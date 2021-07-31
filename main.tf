@@ -61,17 +61,17 @@ module "elasticahe" {
     module.network.private_subnet_c_id,
   ]
 
-  ## base for redis
+  ## base for redis(cluster mode disabled)
   cluster_name          = "${var.prefix}-${var.env}-redis"
   node_type             = "cache.t3.micro"
   engine_version        = "5.0.6"
   family                = "redis5.0"
   number_cache_clusters = 2
 
-  ##"Automatic failover (Not available for T1/T2 instances)"
+  ## not available for t1/t2 instances
   automatic_failover_enabled = true
 
-  ##"Multi AZ (Automatic Failover must also be enabled.  If Cluster Mode is enabled, Multi AZ is on by default, and this setting is ignored)"
+  ## automatic Failover must also be enabled
   multi_az_enabled = true
 
 }
